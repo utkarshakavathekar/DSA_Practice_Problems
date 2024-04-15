@@ -1,0 +1,4 @@
+The best way to find gcd of 2 numbers is using recursion.
+the relation between gcd and lcm of numbers is 
+        gcd*lcm == no1*no2
+using above relation you can find the lcm after calculation gcd.
