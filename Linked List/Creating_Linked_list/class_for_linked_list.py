@@ -28,7 +28,62 @@ class LinkedList():
             while ptr!=None:
                 print(ptr.val)
                 ptr=ptr.next
+
+    def deleteStartNode(self):
+        if self.head==None:
+            return self.head
+        else:
+            self.head = self.head.next
+            return self.head
     
+    def deleteEndNode(self):
+        if self.head==None or self.head.next==None:
+            return self.head
+        else:
+            tmp = self.head
+            while tmp.next.next !=None:
+                tmp =tmp.next
+            tmp.next = None
+            return self.head
+
+    def deleteKthNode(self,k):
+        if k==0:
+            return self.head
+        if k==1:
+            return self.deleteStartNode()
+        else:
+            cnt=0
+            ptr=self.head
+            prev = ptr.next
+            while ptr.next != None:
+                cnt+=1
+                if cnt==k-1:
+                    tmp = ptr.next
+                    ptr.next = ptr.next.next
+                    tmp.next = None
+                    break
+                ptr = ptr.next
+            return self.head
+    
+    def deleteXdataNode(self,val):
+        if self.head==None:
+            return self.head
+        if self.head.val == val:
+            return self.deleteStartNode()
+        else:
+            ptr=self.head
+            prev = ptr
+            ptr=ptr.next
+            while  ptr!=None:
+            
+                if ptr.val==val:
+                    prev.next = prev.next.next
+                    break
+                ptr = ptr.next
+                prev=prev.next
+            return self.head
+
+
 
 if __name__=='__main__':
     l1 = LinkedList()
@@ -36,4 +91,16 @@ if __name__=='__main__':
     l1.addNodeEnd(12)
     l1.addNodeEnd(13)
     l1.addNodeEnd(14)
+    l1.addNodeEnd(15)
     l1.traverseList()
+    print("------------")
+    #l1.deleteKthNode(5)
+    l1.deleteXdataNode(12)
+    l1.traverseList()
+    print("------------")
+    l1.deleteStartNode()
+    l1.traverseList()
+    print("------------")
+    l1.deleteEndNode()
+    l1.traverseList()
+    
