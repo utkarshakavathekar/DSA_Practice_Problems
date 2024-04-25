@@ -74,6 +74,7 @@ class LinkedList():
                         newNode = Node(val)
                         newNode.next = ptr.next
                         ptr.next = newNode
+                        break
                     ptr=ptr.next
                 
         return self.head
