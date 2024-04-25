@@ -9,7 +9,7 @@ class LinkedList():
     def __init__(self):
         self.head = None
 
-    def addNodeEnd(self,val):
+    def insertNodeEnd(self,val):
         ptr = self.head
         if ptr==None:
             n1 = Node(val)
@@ -17,9 +17,68 @@ class LinkedList():
         else:
             while ptr.next!=None:
                 ptr=ptr.next
-            n1=Node(val)
-            ptr.next = n1
+            new=Node(val)
+            ptr.next = new
     
+    def insertNodeStart(self,val):
+        if self.head== None:
+            newNode = Node(val)
+            self.head = newNode
+        else:
+            newNode = Node(val)
+            newNode.next = self.head
+            self.head = newNode
+        return self.head
+
+    def insertAtKthPosition(self,val,k):
+        if self.head == None:
+            if k==1:
+                newNode = Node(val)
+                self.head = newNode
+            else:
+                print("cant insert at %d position"%k)
+        else:
+            if k==1:
+                newNode = Node(val)
+                newNode.next = self.head
+                self.head = newNode
+            else:
+                ptr = self.head
+                cnt=0
+                while ptr.next !=None:
+                    cnt+=1
+                    if cnt==k-1:
+                        newNode = Node(val)
+                        newNode.next = ptr.next
+                        ptr.next = newNode
+                    ptr=ptr.next
+                if cnt==k-2:
+                    newNode = Node(val)
+                    newNode.next = ptr.next
+                    ptr.next = newNode
+        return self.head
+
+    def insertBeforeValK(self,val,k):
+        if self.head == None:
+            print("cant insert before %d"%k)
+        else:
+            if self.head.val==k:
+                newNode = Node(val)
+                newNode.next = self.head
+                self.head = newNode
+            else:
+                ptr = self.head
+                
+                while ptr.next !=None:
+                    if ptr.next.val==k:
+                        newNode = Node(val)
+                        newNode.next = ptr.next
+                        ptr.next = newNode
+                    ptr=ptr.next
+                
+        return self.head
+
+
     def traverseList(self):
         ptr=self.head
         if ptr==None:
@@ -38,6 +97,7 @@ class LinkedList():
     
     def deleteEndNode(self):
         if self.head==None or self.head.next==None:
+            self.head = None
             return self.head
         else:
             tmp = self.head
@@ -87,20 +147,31 @@ class LinkedList():
 
 if __name__=='__main__':
     l1 = LinkedList()
+    #l1.insertAtKthPosition(100,0)
+    #l1.insertBeforeValK(100,12)
     l1.traverseList()
-    l1.addNodeEnd(12)
-    l1.addNodeEnd(13)
-    l1.addNodeEnd(14)
-    l1.addNodeEnd(15)
+    l1.insertNodeEnd(12)
+    l1.insertNodeEnd(13)
+    l1.insertNodeEnd(14)
+    l1.insertNodeEnd(15)
     l1.traverseList()
+    #l1.insertAtKthPosition(100,0)
+    l1.insertBeforeValK(100,13)
     print("------------")
-    #l1.deleteKthNode(5)
-    l1.deleteXdataNode(12)
     l1.traverseList()
-    print("------------")
-    l1.deleteStartNode()
-    l1.traverseList()
-    print("------------")
-    l1.deleteEndNode()
-    l1.traverseList()
+    
+    # l1.deleteKthNode(5)
+    # l1.deleteXdataNode(12)
+    # l1.traverseList()
+    # print("------------")
+    # l1.deleteStartNode()
+    # l1.traverseList()
+    # print("------------")
+    # l1.deleteEndNode()
+    # l1.deleteEndNode()
+    # l1.traverseList()
+    # l1.insertNodeStart(1)
+    # l1.traverseList()
+    # l1.insertNodeStart(2)
+    # l1.traverseList()
     
